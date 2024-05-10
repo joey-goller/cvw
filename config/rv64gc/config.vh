@@ -193,5 +193,8 @@ localparam ZK_SUPPORTED = 1;
 // Memory synthesis configuration
 localparam USE_SRAM = 0;
 
-`include "config-shared.vh"
+// Additions for LFSR:
+localparam ICACHE_REPL = 32'd1;
+localparam DCACHE_REPL = 32'd1;
 
+`include "config-shared.vh"

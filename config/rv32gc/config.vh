@@ -67,6 +67,7 @@ localparam DTLB_ENTRIES = 32'd32;
 
 // Cache configuration.  Sizes should be a power of two
 // typical configuration 4 ways, 4096 bytes per way, 256 bit or more lines
+//change the WAYSIZEINBYTES to 256kib
 localparam DCACHE_NUMWAYS = 32'd4;
 localparam DCACHE_WAYSIZEINBYTES = 32'd4096;
 localparam DCACHE_LINELENINBITS = 32'd512;
@@ -75,8 +76,9 @@ localparam ICACHE_WAYSIZEINBYTES = 32'd4096;
 localparam ICACHE_LINELENINBITS = 32'd512;
 localparam CACHE_SRAMLEN = 32'd128;
 
+// Additions for LFSR:
+
 // Integer Divider Configuration
-// IDIV_BITSPERCYCLE must be 1, 2, or 4
 localparam IDIV_BITSPERCYCLE = 32'd2;
 localparam IDIV_ON_FPU = 0;
 
@@ -90,8 +92,6 @@ localparam logic [63:0] RESET_VECTOR = 64'h80000000;
 localparam WFI_TIMEOUT_BIT = 32'd16;
 
 // Peripheral Addresses
-// Peripheral memory space extends from BASE to BASE+RANGE
-// Range should be a thermometer code with 0's in the upper bits and 1s in the lower bits
 localparam DTIM_SUPPORTED = 1'b0;
 localparam logic [63:0] DTIM_BASE       = 64'h80000000;
 localparam logic [63:0] DTIM_RANGE      = 64'h007FFFFF;
@@ -191,5 +191,8 @@ localparam ZK_SUPPORTED = 1;
 
 // Memory synthesis configuration
 localparam USE_SRAM = 0;
+
+localparam ICACHE_REPL = 32'd1;
+localparam DCACHE_REPL = 32'd1;
 
 `include "config-shared.vh"
